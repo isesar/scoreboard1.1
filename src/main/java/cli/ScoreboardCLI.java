@@ -7,10 +7,7 @@ import service.ScoreboardService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class ScoreboardCLI implements CommandLineRunner {
 
@@ -30,7 +27,7 @@ public class ScoreboardCLI implements CommandLineRunner {
 
         while (true) {
             displayMenu();
-            int choice = scanner.nextInt();
+            int choice = getValidIntegerInput();
             scanner.nextLine(); // Consume newline
 
             switch (choice) {
@@ -123,7 +120,7 @@ public class ScoreboardCLI implements CommandLineRunner {
         System.out.println("Select a match to update:");
         printMatches(liveMatches);
 
-        int matchIndex = scanner.nextInt();
+        int matchIndex = getValidIntegerInput();
         if (matchIndex < 0 || matchIndex >= liveMatches.size()) {
             System.out.println("Invalid match selection.");
             return;
@@ -131,9 +128,9 @@ public class ScoreboardCLI implements CommandLineRunner {
 
         Match selectedMatch = liveMatches.get(matchIndex);
         System.out.print("Enter new home team score: ");
-        int homeScore = scanner.nextInt();
+        int homeScore = getValidIntegerInput();
         System.out.print("Enter new away team score: ");
-        int awayScore = scanner.nextInt();
+        int awayScore = getValidIntegerInput();
 
         service.updateScore(selectedMatch.getHomeTeam().name(), selectedMatch.getAwayTeam().name(), homeScore, awayScore);
         logger.info("Score updated.");
@@ -151,7 +148,7 @@ public class ScoreboardCLI implements CommandLineRunner {
         printMatches(liveMatches);
 
 
-        int matchIndex = scanner.nextInt();
+        int matchIndex = getValidIntegerInput();
         if (matchIndex < 0 || matchIndex >= liveMatches.size()) {
             System.out.println("Invalid match selection.");
             return;
@@ -173,6 +170,19 @@ public class ScoreboardCLI implements CommandLineRunner {
             }
         }
     }
+
+    private int getValidIntegerInput() {
+        while (true) {
+            System.out.print("Enter your choice: ");
+            try {
+                return scanner.nextInt();
+            } catch (InputMismatchException e) {
+                System.out.println("Invalid input. Please enter a valid integer.");
+                scanner.next(); // Clear the invalid input
+            }
+        }
+    }
+
 
     private void displayAllSummary() {
         List<Match> summary = service.getAllMatches();
