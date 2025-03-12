@@ -19,4 +19,16 @@ This project provides a **Command-Line Interface (CLI)** for managing and intera
 3. CLI app should start
 
 ## Running Tests
-To run tests, please change {user.name} in 
+To run tests, please change {user.name} in build.gradle file to use your own local username
+
+## Testing Frameworks Used
+- **JUnit 5**: For unit testing the application.
+- **Mockito**: For mocking dependencies in tests.
+
+## Project Structure
+- **cli**: Handles the command-line interface logic.
+- **service**: Contains the `ScoreboardService`, which manages match lifecycle logic.
+- **model**: Contains the models for Match and interface for scoreboard repository.
+- **repository**: Following repository pattern, this folder contains in-memory repository for matches
+- **enums**: Includes enumerations like `Team` for representing teams.
+- **tests**: JUnit 5-based unit tests for ensuring application stability.
