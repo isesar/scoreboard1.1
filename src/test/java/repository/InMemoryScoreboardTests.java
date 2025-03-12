@@ -1,15 +1,13 @@
-package org.example.test1_1;
+package repository;
 
 import enums.Team;
 import model.Match;
+import model.ScoreboardRepository;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 import org.mockito.Mockito;
-import repository.InMemoryScoreboardRepository;
-import repository.ScoreboardRepository;
 import service.ScoreboardService;
 
-import java.time.LocalDateTime;
 import java.util.*;
 
 public class InMemoryScoreboardTests {
@@ -88,7 +86,7 @@ public class InMemoryScoreboardTests {
         repository.finishMatch(match.getHomeTeam().name(),
                 match.getAwayTeam().name());
         List<Match> summary = repository.getLiveSummary();
-//        assertEquals(0, summary.size());
+        assertEquals(0, summary.size());
     }
 
     @Test
@@ -118,7 +116,7 @@ public class InMemoryScoreboardTests {
 
         List<Match> summary = repository.getLiveSummary();
         String expectedLine = "URUGUAY 6 - ITALY 6";
-        Match actualLine = summary.get(0);
+        Match actualLine = summary.getFirst();
         String  actualLineString = actualLine.toString();
 
         assertEquals(5, summary.size());

@@ -17,7 +17,7 @@ import java.util.Scanner;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
-class ScoreboardCLITest {
+class ScoreboardCLITests {
     private ScoreboardCLI cli;
     @Mock
     private ScoreboardService service;
@@ -38,43 +38,41 @@ class ScoreboardCLITest {
         // Arrange: simulate user input for menu option and team selection
         when(scanner.nextInt())
                 .thenReturn(1) // User selects "Start Match" operation (key 1 in the menu)
-                .thenReturn(0) // Select the first team (index 0)
-                .thenReturn(0) // Select the second team (index 1)
+                .thenReturn(0)
+                .thenReturn(0)
                 .thenReturn(6);
-//                .thenReturn(scanner.nextInt());
 
         when(scanner.nextLine()).thenReturn("\n"); // To consume the newline after integer inputs
 
         // Mock available teams and define service behavior
         List<Team> availableTeams = new ArrayList<>(List.of(Team.values()));
-        when(service.getLiveSummary()).thenReturn(new ArrayList<>()); // No matches initially
+        when(service.getLiveSummary()).thenReturn(new ArrayList<>());
 
         // Act: Run the CLI
         cli.run();
 
-        // Assert: Verify behavior and output
-           verify(service).startMatch(availableTeams.get(0), availableTeams.get(1));
+        // Assert
+        verify(service).startMatch(availableTeams.get(0), availableTeams.get(1));
         System.out.println("here" +availableTeams.get(0) + availableTeams.get(1));
 
         System.out.println("Captured Output: " + outContent.toString().trim()+ availableTeams.get(0) + availableTeams.get(0));
-           assertTrue(outContent.toString().trim().contains("Match started: Mexico vs Canada" ));
+        assertTrue(outContent.toString().trim().contains("Match started: Mexico vs Canada" ));
 
     }
 
     @Test
     public void testUpdateMatchOperation() {
-        // Arrange: simulate user input for menu option and team selection
-// Arrange: Create a match and mock service behavior
+        // Arrange
+
         Team team1 = Team.CANADA;
         Team team2 = Team.MEXICO;
         Match match = new Match(team1, team2); // Initial score (0:0)
 
-        // Mock service output for match list
+        // Mock
         when(service.getLiveSummary()).thenReturn(List.of(match));
-        // Mock behavior for updating a match
-        doNothing().when(service).updateScore(match.getHomeTeam().name(), match.getAwayTeam().name(), 2, 3); // Assume service updates scores to 2:3
+        doNothing().when(service).updateScore(match.getHomeTeam().name(), match.getAwayTeam().name(), 2, 3);
 
-        // Simulate user selecting "Update Match" (option 2), choosing the match, and providing new scores
+        // Simulate user selecting
         when(scanner.nextInt())
                 .thenReturn(2) // User selects "Update Match" option
                 .thenReturn(0) // Select the first match (index 0)

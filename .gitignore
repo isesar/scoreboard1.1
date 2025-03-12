@@ -5,6 +5,7 @@ build/
 !**/src/main/**/build/
 !**/src/test/**/build/
 java_pid32092.hprof
+logs
 
 ### STS ###
 .apt_generated

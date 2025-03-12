@@ -5,7 +5,6 @@ package model;
 import enums.Team;
 
 import java.time.LocalDateTime;
-import java.util.Objects;
 
 public class Match {
     private final Team homeTeam;
@@ -60,16 +59,4 @@ public class Match {
         return String.format("%s %d - %s %d", homeTeam, homeScore, awayTeam, awayScore);
     }
 
-//    @Override
-//    public boolean equals(Object o) {
-//        if (this == o) return true;
-//        if (o == null || getClass() != o.getClass()) return false;
-//        Match match = (Match) o;
-//        return homeTeam == match.homeTeam && awayTeam == match.awayTeam;
-//    }
-//
-//    @Override
-//    public int hashCode() {
-//        return Objects.hash(homeTeam, awayTeam);
-//    }
 }

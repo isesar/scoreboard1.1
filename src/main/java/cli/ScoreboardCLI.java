@@ -113,6 +113,7 @@ public class ScoreboardCLI implements CommandLineRunner {
 
 
     private void updateScore() {
+        logger.info("Updating score...");
         List<Match> liveMatches = service.getLiveSummary();
         if (liveMatches.isEmpty()) {
             System.out.println("No live matches to update.");
@@ -135,10 +136,11 @@ public class ScoreboardCLI implements CommandLineRunner {
         int awayScore = scanner.nextInt();
 
         service.updateScore(selectedMatch.getHomeTeam().name(), selectedMatch.getAwayTeam().name(), homeScore, awayScore);
-        System.out.println("Score updated. New match score: " + selectedMatch.getHomeScore() + ":" + selectedMatch.getAwayScore() + ".");
+        logger.info("Score updated.");
     }
 
     private void finishMatch() {
+        logger.info("Finishing match...");
         List<Match> liveMatches = service.getLiveSummary();
         if (liveMatches.isEmpty()) {
             System.out.println("No live matches to finish.");
@@ -157,7 +159,7 @@ public class ScoreboardCLI implements CommandLineRunner {
 
         Match selectedMatch = liveMatches.get(matchIndex);
         service.finishMatch(selectedMatch.getHomeTeam().name(), selectedMatch.getAwayTeam().name());
-        System.out.println("Match finished and removed from scoreboard.");
+        logger.info("Match finished and removed from scoreboard.");
     }
 
     private void displayLiveSummary() {
