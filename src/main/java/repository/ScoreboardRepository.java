@@ -1,4 +1,6 @@
-package model;
+package repository;
+
+import model.Match;
 
 import java.util.List;
 

@@ -4,7 +4,7 @@ package service;
 import enums.Team;
 import model.Match;
 import org.springframework.stereotype.Service;
-import model.ScoreboardRepository;
+import repository.ScoreboardRepository;
 
 import java.util.List;
 
