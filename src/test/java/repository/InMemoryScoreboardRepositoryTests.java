@@ -2,12 +2,12 @@ package repository;
 
 import enums.Team;
 import models.Match;
+import models.ScoreboardRepository;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 import org.mockito.Mockito;
 
 
-import java.time.LocalDateTime;
 import java.util.*;
 
 public class InMemoryScoreboardTests {
