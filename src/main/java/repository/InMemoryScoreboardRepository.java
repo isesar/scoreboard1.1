@@ -1,7 +1,6 @@
 package repository;
 
 import model.Match;
-import model.ScoreboardRepository;
 
 import java.util.Comparator;
 import java.util.List;
