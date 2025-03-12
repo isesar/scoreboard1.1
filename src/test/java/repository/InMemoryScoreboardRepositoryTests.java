@@ -6,11 +6,12 @@ import models.ScoreboardRepository;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 import org.mockito.Mockito;
+import service.ScoreboardService;
 
 
 import java.util.*;
 
-public class InMemoryScoreboardTests {
+public class InMemoryScoreboardRepositoryTests {
 
     @Test
     public void testMatchCreation() {
